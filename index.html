@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy 21st Birthday, Disha!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body, html {
+      min-height: 100%;
+      width: 100%;
+      overflow-x: hidden;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffd1dc, #ffe7f0);
+      overflow: hidden;
+    }
+
+    /* Falling petals animation */
+    .petal {
+      position: absolute;
+      top: -10px;
+      width: 30px;
+      height: 30px;
+      background: url('petal.png') no-repeat center/contain;
+      opacity: 0.8;
+      animation: fall linear infinite;
+    }
+
+    /* Falling flower-emojis animation */
+    .fall-flower {
+      position: absolute;
+      top: -10px;
+      font-size: 2rem;
+      opacity: 0.9;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-40px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      color: #d72b85;
+      margin-bottom: 10px;
+    }
+    h1 .emoji { font-size: 4rem; vertical-align: middle; }
+    p.tagline {
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .countdown-card {
+      background: rgba(255,255,255,0.9);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 450px;
+      margin-bottom: 40px;
+    }
+    .countdown-card h2 {
+      color: #d72b85;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+    .timer {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+    }
+    .timer div { flex: 1; }
+    .timer span.value {
+      display: block;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #d72b85;
+    }
+    .timer span.label {
+      font-size: 0.85rem;
+      color: #777;
+      margin-top: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .countdown-card p.summary {
+      font-size: 1rem;
+      color: #444;
+    }
+
+    /* Floating flower blooms (emoji) */
+    .flower {
+      position: absolute;
+      font-size: 2rem;
+      opacity: 0;
+      animation: bloom 3s ease-in-out forwards;
+    }
+    @keyframes bloom {
+      0% { transform: translateY(0) scale(0); opacity: 0; }
+      50% { transform: translateY(-20px) scale(1.2); opacity: 1; }
+      100% { transform: translateY(-40px) scale(1); opacity: 0; }
+    }
+
+    /* Illustration styling */
+    .illustration img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      margin-bottom: 30px;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        flex-direction: row;
+        text-align: left;
+      }
+      .content { flex: 1; padding-right: 20px; }
+      .illustration { flex: 1; display: flex; justify-content: center; }
+    }
+
+    /* Responsive tweaks for small screens */
+    @media (max-width: 480px) {
+      .illustration img { margin-bottom: 20px; }
+    }
+
+    @media (max-width: 480px) {
+      html, body {
+        overflow-y: auto;   /* explicitly allow vertical scroll */
+      }
+
+      /* if you still need to force‑hide any horiz. overflow: */
+      html, body {
+        overflow-x: hidden;
+      }
+    }
+  </style>
+</head>
+<body>
+  <script>
+    // Generate petals dynamically
+    const totalPetals = 25;
+    for (let i = 0; i < totalPetals; i++) {
+      const petal = document.createElement('div');
+      petal.classList.add('petal');
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      petal.style.animationDelay = Math.random() * 5 + 's';
+      document.body.appendChild(petal);
+    }
+
+    // Generate falling flower emojis in background
+    const totalFallingFlowers = 20;
+    for (let i = 0; i < totalFallingFlowers; i++) {
+      const f = document.createElement('div');
+      f.classList.add('fall-flower');
+      f.textContent = '🌸';
+      f.style.left = Math.random() * 100 + 'vw';
+      f.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      f.style.animationDelay = Math.random() * 5 + 's';
+      document.body.appendChild(f);
+    }
+
+    // Generate blooming emoji flowers (rising)
+    function createFlowers(count) {
+      for (let i = 0; i < count; i++) {
+        const flower = document.createElement('div');
+        flower.classList.add('flower');
+        flower.textContent = '🌸';
+        flower.style.left = Math.random() * 100 + 'vw';
+        flower.style.animationDelay = Math.random() * 12 + 's';
+        document.body.appendChild(flower);
+      }
+    }
+    // Increase blooms to 30
+    createFlowers(30);
+  </script>
+
+  <div class="container">
+    <div class="content">
+      <h1>Happy 21st Birthday, Disha! <span class="emoji">🎉</span></h1>
+      <p class="tagline">Celebrating 21 wonderful years on April 19, 2025 — may your life continue to bloom!</p>
+
+      <div class="countdown-card">
+        <h2>You've been blooming for:</h2>
+        <div class="timer">
+          <div><span id="years" class="value">0</span><span class="label">Years</span></div>
+          <div><span id="days" class="value">0</span><span class="label">Days</span></div>
+          <div><span id="hours" class="value">0</span><span class="label">Hours</span></div>
+          <div><span id="minutes" class="value">0</span><span class="label">Minutes</span></div>
+          <div><span id="seconds" class="value">0</span><span class="label">Seconds</span></div>
+        </div>
+        <p class="summary">
+          That's <strong><span id="total-minutes">0</span> minutes</strong> and
+          <strong><span id="total-seconds">0</span> seconds</strong> of pure wonder!
+        </p>
+      </div>
+    </div>
+
+    <div class="illustration">
+      <img src="./girl-removebg-preview.png" alt="Girl illustration">
+    </div>
+  </div>
+
+  <script>
+    // Timer logic
+    const birthDate = new Date(2004, 3, 19);
+    const yearsEl = document.getElementById('years');
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minsEl = document.getElementById('minutes');
+    const secsEl = document.getElementById('seconds');
+    const totalMinsEl = document.getElementById('total-minutes');
+    const totalSecsEl = document.getElementById('total-seconds');
+
+    function updateTimer() {
+      const now = new Date();
+      let years = now.getFullYear() - birthDate.getFullYear();
+      const thisYearBday = new Date(birthDate);
+      thisYearBday.setFullYear(birthDate.getFullYear() + years);
+      if (now < thisYearBday) years--;
+
+      const lastBday = new Date(birthDate);
+      lastBday.setFullYear(birthDate.getFullYear() + years);
+      const diff = now - lastBday;
+
+      const days = Math.floor(diff / (1000*60*60*24));
+      const hours = Math.floor(diff / (1000*60*60) % 24);
+      const minutes = Math.floor(diff / (1000*60) % 60);
+      const seconds = Math.floor(diff / 1000 % 60);
+
+      yearsEl.textContent = years;
+      daysEl.textContent = days;
+      hoursEl.textContent = hours;
+      minsEl.textContent = minutes;
+      secsEl.textContent = seconds;
+      totalMinsEl.textContent = Math.floor((now - birthDate)/(1000*60)).toLocaleString();
+      totalSecsEl.textContent = Math.floor((now - birthDate)/1000).toLocaleString();
+    }
+    setInterval(updateTimer, 1000);
+    updateTimer();
+  </script>
+</body>
+</html>
